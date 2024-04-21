@@ -13,6 +13,9 @@
           <a class="nav-link" href="/i-secure/logout.php">Logout</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="/i-secure/login.php">Login</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="/i-secure/signup.php">Signup</a>
         </li>
       </ul>
