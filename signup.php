@@ -1,5 +1,7 @@
 <?php 
 $showalert=false;
+$showerror=false;
+
 if($_SERVER["REQUEST_METHOD"]=="POST")
 {
     include "partials/dbconnect.php";
@@ -15,8 +17,11 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
         {
             $showalert=true;
         }
+        
     }
- 
+    else{
+        $showerror="password do not matched";
+       }
 }
 ?>
 <!doctype html>
@@ -34,6 +39,12 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
     echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
     <strong>success!</strong> Your account is created now you can login.
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+    }
+    if($showerror)
+    {
+        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Error!</strong>'.$showerror .'
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
     }
     ?>
     
