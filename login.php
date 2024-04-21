@@ -34,7 +34,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
     <?php
     if($login){
     echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-    <strong>success!</strong> Your logge in succesfully.
+    <strong>success!</strong> You logged in succesfully.
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
     }
     if($showerror)
