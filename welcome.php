@@ -19,7 +19,15 @@
   </head>
   <body>
     <?php require "partials/nav.php" ?>
-    Welcome -<?php echo $_SESSION["username"]?>
+    
+    <div class="container my-3">
+    <div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">Welcome -<?php echo $_SESSION["username"]?></h4>
+  <p>hey! what's up bro ? what are you doing . welcome to isecure .</p>
+  <hr>
+  <p class="mb-0">you can visit this site anywhere and anytime by using these credentials and you can also logged out by <a href="/i-secure/logout.php" >using this link<a></p>
+</div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
 </html>
