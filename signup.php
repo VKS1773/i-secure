@@ -19,7 +19,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
     else{
     if(($password==$cpassword))
     {
-        $sql="INSERT INTO `users` (`username`,`password`) VALUES ('$username','$password')";
+        $hash=password_hash($password,PASSWORD_DEFAULT);
+        $sql="INSERT INTO `users` (`username`,`password`) VALUES ('$username','$hash')";
         $result=mysqli_query($conn,$sql);
         if($result)
         {
@@ -57,17 +58,17 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
     ?>
     
 </div>
-    <div class="container">
-        <h1 class="text-center m-4" >Sing up to our website</h1>
+  <div class="container">
+    <h1 class="text-center m-4" >Sing up to our website</h1>
     <form action="/i-secure/signup.php" method="post">
   <div class="mb-3">
     <label for="username" class="form-label">Username</label>
-    <input type="text" class="form-control" id="username" name="username"  aria-describedby="emailHelp">
+    <input type="text" class="form-control" maxlength="12" id="username" name="username"  aria-describedby="emailHelp">
     <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
   </div>
   <div class="mb-3">
     <label for="password" class="form-label">Password</label>
-    <input type="password" class="form-control" id="password" name="password">
+    <input type="password" maxlength="25" class="form-control" id="password" name="password">
   </div>
   <div class="mb-3">
     <label for="cpassword" class="form-label">Confirm Password</label>

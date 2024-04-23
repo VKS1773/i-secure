@@ -8,22 +8,30 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
     $username=$_POST["username"];
     $password=$_POST["password"];
   
-        $sql="select * from users where username='$username' AND password='$password'";
+        $sql="select * from users where username='$username'";
         $result=mysqli_query($conn,$sql);
         $num=mysqli_num_rows($result);
-        if($num>=1)
+        if($num==1)
         {
-             $login=true;
-             session_start();
-             $_SESSION["loggedin"]=true;
-             $_SESSION["username"]=$username;
-             header("location:welcome.php");
+          while($row=mysqli_fetch_assoc($result))
+          {
+            if(password_verify($password,$row['password']))
+            {
+              $login=true;
+              session_start();
+              $_SESSION["loggedin"]=true;
+              $_SESSION["username"]=$username;
+              header("location:welcome.php");
+            }
+            else{
+              $showerror="invalide credentials";
+            }
+          }  
         }
-        else{
-          $showerror="invalid credentials";
-        }
-        
-}
+        // {
+        //   $showerror="username does not exist";
+        // }
+      }
 ?>
 <!doctype html>
 <html lang="en">
@@ -50,9 +58,9 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
     ?>
     
 </div>
-    <div class="container">
-        <h1 class="text-center m-4" >Login up to our website</h1>
-    <form action="/i-secure/login.php" method="post">
+  <div class="container">
+      <h1 class="text-center m-4" >Login up to our website</h1>
+  <form action="/i-secure/login.php" method="post">
   <div class="mb-3">
     <label for="username" class="form-label">Username</label>
     <input type="text" class="form-control" id="username" name="username"  aria-describedby="emailHelp">
@@ -62,7 +70,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
     <label for="password" class="form-label">Password</label>
     <input type="password" class="form-control" id="password" name="password">
   </div>
-  <button type="submit" class="btn btn-primary">Login</button>
+    <button type="submit" class="btn btn-primary">Login</button>
 </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
